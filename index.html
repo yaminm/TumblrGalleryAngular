@@ -1,0 +1,72 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Menashe Yamin</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css" >
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+
+        <div ng-app="myApp" ng-controller="myCtrl">
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Menashe Yamin</a>
+                </div>
+                <ul class="nav navbar-nav">
+                  <li>
+                    <a class ng-click="filter = 'all'">
+                        <div > All pic</div>
+                    </a>
+                  </li>
+                  <li>
+                    <a ng-click="filter = 'true'">
+                        <div > only like pic</div>
+                    </a>
+                  </li>
+                 <li>
+                    <a ng-click="filter = 'remove'">
+                        <div > Recycal Bin</div>
+                    </a>
+                  </li> 
+
+                </ul>
+              </div>
+            </nav>
+            <div class="row"> 
+                <div  class=".col-lg-3 col-md-4 col-sm-6 col-xs-12 wrapper" ng-repeat="x in imgUrlArray | filter: filterByLike">
+                    <image class="img-responsive img-thumbnail" src="{{x.url}}" />
+                    <div class="subcontainer">
+                        <i  ng-click="clickLike(x)"  class="glyphicon glyphicon-heart" ng-class="x.like ? 'like' : '' " title="click to like/unlike"> </i>
+                        <i  ng-click="clickremovePic(x) " confirm-click="Are you sure you wish to proceed?" class="glyphicon glyphicon-remove" ng-class="x.remove ? 'recycalBin' :''" title="click to remove/undo"></i>
+                    </div>
+                </div>
+            </div >
+            <h1>{{errorMsg}}</h1>
+        </div>
+
+
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="js/vendor/angular.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+    </body>
+</html>
